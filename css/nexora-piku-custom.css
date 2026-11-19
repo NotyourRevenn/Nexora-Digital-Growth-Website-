@@ -1,0 +1,721 @@
+/* ==========================================================================
+   Nexora Neo-Brutalist Custom Styles (Piku Index-7 Aesthetic)
+   ========================================================================== */
+
+/* Brand Typography & Fonts */
+:root {
+  --nexora-bg-cream: #FFF7EC;
+  --nexora-black: #000000;
+  --nexora-mint: #45F08D;
+  --nexora-yellow: #FFE073;
+  --nexora-pink: #FF9AE3;
+  --nexora-lilac: #A394FF;
+  --nexora-blue: #94E5FF;
+  --nexora-white: #FFFFFF;
+}
+
+body {
+  background-color: var(--nexora-bg-cream) !important;
+  color: #1a1a1a;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Hard Offset Shadows */
+.brutalist-card {
+  border: 3px solid #000000 !important;
+  border-radius: 32px !important;
+  box-shadow: 0 12px 0 #000000 !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.brutalist-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 0 #000000 !important;
+}
+
+/* Nexora Navbar Logo */
+.nexora-nav-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Hero Section Typography */
+.hero-banner-seven .hero-heading {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 900 !important;
+  text-transform: uppercase;
+  color: #000000;
+  letter-spacing: -6px;
+  line-height: 0.92;
+}
+
+@media (min-width: 1200px) {
+  .hero-banner-seven .hero-heading {
+    font-size: 155px;
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 768px) {
+  .hero-banner-seven .hero-heading {
+    font-size: 90px;
+    letter-spacing: -3px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-banner-seven .hero-heading {
+    font-size: 52px;
+    letter-spacing: -2px;
+    line-height: 1.05;
+  }
+}
+
+/* Rotating Starburst Badge */
+.starburst-badge-wrapper {
+  position: absolute;
+  top: 15%;
+  right: 5%;
+  width: 140px;
+  height: 140px;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.3s ease;
+}
+
+.starburst-badge-wrapper:hover {
+  transform: scale(1.1);
+}
+
+.starburst-badge-img {
+  width: 100%;
+  height: 100%;
+  animation: starburstSpin 25s linear infinite;
+}
+
+.starburst-badge-arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28px;
+  color: #000000;
+  pointer-events: none;
+}
+
+@keyframes starburstSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Interactive Neo-Brutalist ROI Simulator */
+.roi-simulator-section {
+  padding: 100px 0;
+  background-color: var(--nexora-bg-cream);
+  position: relative;
+}
+
+.simulator-box {
+  background: #ffffff;
+  border: 3.5px solid #000000;
+  border-radius: 36px;
+  box-shadow: 0 16px 0 #000000;
+  padding: 50px 40px;
+  margin-top: 40px;
+}
+
+.sim-chip-btn {
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 50px;
+  padding: 10px 22px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #000000;
+  box-shadow: 0 4px 0 #000000;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.sim-chip-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #000000;
+  background: var(--nexora-yellow);
+}
+
+.sim-chip-btn.active {
+  background: var(--nexora-mint) !important;
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #000000 !important;
+}
+
+/* Custom Neo-Brutalist Slider */
+.sim-range-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 16px;
+  border-radius: 10px;
+  background: #e2e8f0;
+  border: 2px solid #000000;
+  outline: none;
+  margin: 25px 0 15px;
+}
+
+.sim-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--nexora-yellow);
+  border: 3px solid #000000;
+  box-shadow: 0 4px 0 #000000;
+  cursor: grab;
+  transition: transform 0.15s ease;
+}
+
+.sim-range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  background: var(--nexora-pink);
+}
+
+.sim-output-card {
+  border: 2.5px solid #000000;
+  border-radius: 24px;
+  padding: 24px 20px;
+  box-shadow: 0 8px 0 #000000;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.sim-output-card:hover {
+  transform: translateY(-4px);
+}
+
+.sim-output-card.card-revenue {
+  background: var(--nexora-mint);
+}
+
+.sim-output-card.card-roas {
+  background: var(--nexora-yellow);
+}
+
+.sim-output-card.card-cpa {
+  background: var(--nexora-lilac);
+}
+
+.sim-val-number {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #000000;
+  line-height: 1.1;
+  margin: 8px 0 4px;
+}
+
+.sim-val-label {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #000000;
+}
+
+/* WhatsApp CTA Button */
+.btn-whatsapp-brutalist {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #25D366;
+  color: #000000 !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border: 3px solid #000000;
+  border-radius: 50px;
+  box-shadow: 0 8px 0 #000000;
+  transition: all 0.2s ease;
+}
+
+.btn-whatsapp-brutalist:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 0 #000000;
+  background: #20BA5A;
+}
+
+/* Service Card Hover Glow */
+.card-style-sixteen {
+  border: 3px solid #000000 !important;
+  border-radius: 28px !important;
+  box-shadow: 0 8px 0 #000000 !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.card-style-sixteen:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 14px 0 #000000 !important;
+}
+
+/* Project Cards Split */
+.project-block-one {
+  border: 3px solid #000000 !important;
+  border-radius: 36px !important;
+  box-shadow: 0 12px 0 #000000 !important;
+  overflow: hidden;
+  margin-bottom: 45px;
+  background: #ffffff;
+}
+
+/* Footer Contrast */
+.footer-two {
+  background: #000000 !important;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+}
+
+/* ==========================================================================
+   Continuous Moving Partner Platforms Marquee (Right to Left Infinite Queue)
+   ========================================================================== */
+.partner-ticker-wrapper {
+  overflow: hidden;
+  width: 100%;
+  background: #ffffff;
+  border-top: 2.5px solid #000000;
+  border-bottom: 2.5px solid #000000;
+  padding: 22px 0;
+  user-select: none;
+  position: relative;
+  display: flex;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  flex-shrink: 0;
+  animation: marqueeRightToLeft 26s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.marquee-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 36px;
+  padding-right: 36px;
+}
+
+.ticker-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 50px;
+  padding: 8px 24px;
+  box-shadow: 0 4px 0 #000000;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  cursor: pointer;
+}
+
+.ticker-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #000000;
+  background: var(--nexora-yellow);
+}
+
+.ticker-pill i {
+  font-size: 1.4rem;
+}
+
+.ticker-pill span {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  color: #000000;
+  white-space: nowrap;
+}
+
+.ticker-sep {
+  font-size: 1.3rem;
+  color: #000000;
+  opacity: 0.6;
+}
+
+@keyframes marqueeRightToLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ==========================================================================
+   COMPREHENSIVE RESPONSIVE SUITE (Mobile, Tablet, Laptop, Desktop)
+   ========================================================================== */
+
+/* Fluid Typography Utilities */
+.sec-title-large {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 900 !important;
+  font-size: clamp(1.85rem, 4.5vw, 3.2rem) !important;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.counter-huge-number {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 900 !important;
+  font-size: clamp(2.4rem, 6.5vw, 4.2rem) !important;
+  color: #000000;
+  margin: 0;
+  line-height: 1;
+}
+
+.case-study-title {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 800 !important;
+  font-size: clamp(1.35rem, 3vw, 2rem) !important;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+/* Global Overflow Protection */
+html, body {
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Case Study Split Card Architecture */
+.case-study-left {
+  padding: 50px 45px;
+}
+
+.case-study-right {
+  padding: 50px;
+  border-left: 3.5px solid #000000;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Counter Middle Divider */
+.counter-middle-col {
+  border-left: 2px solid #000000;
+  border-right: 2px solid #000000;
+}
+
+/* Contact Card Box */
+.contact-card-box {
+  background: #ffffff;
+  border: 3.5px solid #000000;
+  border-radius: 36px;
+  box-shadow: 0 16px 0 #000000;
+  padding: 55px 45px;
+}
+
+/* Big Banner Responsive Title */
+.big-cta-title {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 900 !important;
+  font-size: clamp(2.2rem, 7.5vw, 130px) !important;
+  text-transform: uppercase;
+  letter-spacing: -3px;
+  line-height: 0.98;
+  color: #000000;
+  margin-bottom: 40px;
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoints: Desktops & Laptops (min-width: 1200px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1400px) {
+  .hero-banner-seven .hero-heading {
+    font-size: 145px !important;
+    letter-spacing: -6px !important;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .hero-banner-seven .hero-heading {
+    font-size: 118px !important;
+    letter-spacing: -5px !important;
+  }
+  .starburst-badge-wrapper {
+    width: 115px;
+    height: 115px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoints: Small Laptops & Tablets Landscape (992px to 1199px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1199px) and (min-width: 992px) {
+  .hero-banner-seven .hero-heading {
+    font-size: 92px !important;
+    letter-spacing: -4px !important;
+  }
+  .starburst-badge-wrapper {
+    width: 95px;
+    height: 95px;
+    top: 10%;
+    right: 2%;
+  }
+  .case-study-left {
+    padding: 38px 30px;
+  }
+  .case-study-right {
+    padding: 38px 25px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoints: Tablets Portrait (768px to 991px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 991px) {
+  .mt-180 {
+    margin-top: 80px !important;
+  }
+  .mt-130 {
+    margin-top: 60px !important;
+  }
+  .mt-200 {
+    margin-top: 90px !important;
+  }
+  .mb-120 {
+    margin-bottom: 60px !important;
+  }
+
+  /* Hero Adjustments */
+  .hero-banner-seven {
+    padding-top: 130px !important;
+    padding-bottom: 70px !important;
+  }
+  .hero-banner-seven .hero-heading {
+    font-size: 72px !important;
+    letter-spacing: -3px !important;
+    line-height: 0.98 !important;
+  }
+  .starburst-badge-wrapper {
+    width: 80px;
+    height: 80px;
+    top: 5%;
+    right: 15px;
+  }
+  .starburst-badge-arrow {
+    font-size: 20px;
+  }
+
+  /* Case Studies Stack */
+  .case-study-right {
+    border-left: none !important;
+    border-top: 3.5px solid #000000 !important;
+    padding: 40px 25px;
+  }
+  .case-study-left {
+    padding: 35px 25px;
+  }
+
+  /* Simulator Stack */
+  .simulator-box {
+    padding: 35px 25px;
+  }
+
+  /* Navbar Collapse Menu Styling for Mobile/Tablet */
+  .navbar-collapse {
+    background: #ffffff;
+    border: 2.5px solid #000000;
+    border-radius: 20px;
+    box-shadow: 0 8px 0 #000000;
+    padding: 20px;
+    margin-top: 15px;
+  }
+  .navbar-nav .nav-link {
+    font-size: 1.05rem !important;
+    font-weight: 800 !important;
+    padding: 10px 15px !important;
+    border-radius: 10px;
+    color: #000000 !important;
+  }
+  .navbar-nav .nav-link:hover {
+    background: var(--nexora-yellow);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoints: Mobile Phones (max-width: 767px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  /* Spacings */
+  .mt-180, .mt-130, .mt-200 {
+    margin-top: 60px !important;
+  }
+  .mb-120, .mb-60 {
+    margin-bottom: 40px !important;
+  }
+
+  /* Hero Section Mobile */
+  .hero-banner-seven {
+    padding-top: 110px !important;
+    padding-bottom: 50px !important;
+  }
+  .hero-banner-seven .hero-heading {
+    font-size: clamp(32px, 9.8vw, 56px) !important;
+    letter-spacing: -1.5px !important;
+    line-height: 1.05 !important;
+    word-break: break-word;
+  }
+  .hero-banner-seven .hero-heading .shapes {
+    height: 0.6em !important;
+    max-height: 38px !important;
+    margin: 0 3px !important;
+  }
+  .starburst-badge-wrapper {
+    width: 60px;
+    height: 60px;
+    top: -15px;
+    right: 5px;
+  }
+  .starburst-badge-arrow {
+    font-size: 15px;
+  }
+
+  /* Hero Bottom Row */
+  .avatar-stack {
+    margin-left: 0 !important;
+  }
+  .avatar-stack img, .avatar-stack div {
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  /* Counter Section Mobile */
+  .counter-section-one {
+    padding: 20px 0 !important;
+  }
+  .counter-middle-col {
+    border-left: none !important;
+    border-right: none !important;
+    border-top: 2px dashed #000000;
+    border-bottom: 2px dashed #000000;
+    padding: 24px 0 !important;
+    margin: 20px 0 !important;
+  }
+
+  /* Simulator Mobile */
+  .simulator-box {
+    padding: 24px 16px !important;
+    border-radius: 22px !important;
+    box-shadow: 0 8px 0 #000000 !important;
+  }
+  .sim-chip-btn {
+    padding: 7px 14px !important;
+    font-size: 0.78rem !important;
+    box-shadow: 0 3px 0 #000000 !important;
+  }
+  #sliderBudgetValue {
+    font-size: 1.25rem !important;
+    padding: 3px 12px !important;
+  }
+  .sim-output-card {
+    padding: 16px 12px !important;
+    border-radius: 18px !important;
+    box-shadow: 0 6px 0 #000000 !important;
+  }
+  .sim-val-number {
+    font-size: 1.55rem !important;
+  }
+  .btn-whatsapp-brutalist {
+    padding: 13px 20px !important;
+    font-size: 0.88rem !important;
+    box-shadow: 0 6px 0 #000000 !important;
+  }
+
+  /* Case Studies Mobile */
+  .project-block-one {
+    border-radius: 24px !important;
+    box-shadow: 0 8px 0 #000000 !important;
+  }
+  .case-study-left {
+    padding: 26px 18px !important;
+  }
+  .case-study-right {
+    padding: 30px 18px !important;
+  }
+  .case-study-right img {
+    max-height: 220px !important;
+  }
+
+  /* Capabilities Cards Mobile */
+  .card-style-sixteen {
+    padding: 24px 20px !important;
+    border-radius: 22px !important;
+    box-shadow: 0 6px 0 #000000 !important;
+  }
+
+  /* Contact Card Mobile */
+  .contact-card-box {
+    padding: 26px 16px !important;
+    border-radius: 22px !important;
+    box-shadow: 0 8px 0 #000000 !important;
+  }
+
+  /* Footer Mobile */
+  .footer-two .bg-wrapper {
+    padding: 40px 20px 24px !important;
+    border-radius: 24px !important;
+  }
+
+  /* Marquee Strip Mobile */
+  .partner-ticker-wrapper {
+    padding: 16px 0 !important;
+  }
+  .ticker-pill {
+    padding: 6px 16px !important;
+    box-shadow: 0 3px 0 #000000 !important;
+  }
+  .ticker-pill span {
+    font-size: 0.9rem !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoints: Extra Small Devices (<= 380px, e.g. iPhone SE, Small Galaxy)
+   -------------------------------------------------------------------------- */
+@media (max-width: 380px) {
+  .hero-banner-seven .hero-heading {
+    font-size: 30px !important;
+    letter-spacing: -1px !important;
+  }
+  .sim-chip-btn {
+    padding: 6px 10px !important;
+    font-size: 0.72rem !important;
+  }
+  .sim-val-number {
+    font-size: 1.35rem !important;
+  }
+  .big-cta-title {
+    font-size: 26px !important;
+  }
+  .case-study-title {
+    font-size: 1.25rem !important;
+  }
+}
