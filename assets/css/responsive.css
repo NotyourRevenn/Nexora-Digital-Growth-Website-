@@ -1,0 +1,371 @@
+/* ==========================================================================
+   NEXORA DIGITAL x XOLIO RESPONSIVE BREAKPOINTS
+   Mobile-first & High-DPI Displays Optimization
+   ========================================================================== */
+
+/* Large Tablets & Small Laptops (<= 1199px) */
+@media (max-width: 1199px) {
+  .site-header .container,
+  .site-header .header-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .desktop-nav {
+    gap: 16px;
+    margin-right: 18px;
+  }
+  
+  .nav-link {
+    font-size: 0.84rem;
+    padding: 6px 2px;
+  }
+  
+  .header-cta-btn {
+    padding: 6px 14px !important;
+    font-size: 0.78rem !important;
+    height: 36px !important;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+  }
+  
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .showcase-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .showcase-grid .showcase-card:last-child {
+    grid-column: span 2;
+  }
+  
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .footer-top-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+/* Tablets & Landscape Mobiles (<= 991px) */
+@media (max-width: 991px) {
+  .section-py {
+    padding-top: 85px;
+    padding-bottom: 85px;
+  }
+  
+  .sec-title {
+    font-size: 2.25rem;
+  }
+  
+  .desktop-nav {
+    display: none;
+  }
+  
+  .mobile-toggle {
+    display: block;
+  }
+  
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .hero-section {
+    padding-top: 130px;
+    padding-bottom: 60px;
+  }
+  
+  .hero-visual-card {
+    order: -1;
+  }
+  
+  .hero-3d-wrapper {
+    height: 380px;
+  }
+  
+  .about-card-wrapper {
+    grid-template-columns: 1fr;
+    padding: 40px 30px;
+    gap: 40px;
+  }
+  
+  .orbital-container {
+    width: 320px;
+    height: 320px;
+  }
+  
+  .orbital-ring.ring-1 {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .orbital-ring.ring-2 {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .orbit-node {
+    width: 48px;
+    height: 48px;
+    font-size: 1.15rem;
+  }
+  
+  .node-meta { top: -4px; left: 136px; }
+  .node-google { top: 37px; left: 235px; }
+  .node-linkedin { top: 136px; left: 276px; }
+  .node-shopify { top: 235px; left: 235px; }
+  .node-tiktok { top: 276px; left: 136px; }
+  .node-whatsapp { top: 235px; left: 37px; }
+  .node-reels { top: 136px; left: -4px; }
+  .node-seo { top: 37px; left: 37px; }
+  
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .price-card.featured {
+    transform: none;
+  }
+  
+  .price-card.featured:hover {
+    transform: translateY(-8px);
+  }
+  
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  
+  .consultation-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* Mobile Devices (<= 767px) */
+@media (max-width: 767px) {
+  .brand-logo-img {
+    height: 40px;
+    width: 40px;
+  }
+
+  .brand-title {
+    font-size: 1.15rem;
+  }
+
+  .brand-tagline {
+    font-size: 0.62rem;
+    letter-spacing: 1.8px;
+  }
+
+  .nav-actions .header-cta-btn {
+    display: none;
+  }
+
+  .container {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  
+  .hero-title {
+    font-size: 2.35rem;
+    line-height: 1.22;
+  }
+  
+  .hero-desc {
+    font-size: 1rem;
+  }
+  
+  .hero-stats-row {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .showcase-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .showcase-grid .showcase-card:last-child {
+    grid-column: auto;
+  }
+  
+  .about-features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .metrics-column {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-group-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .consultation-form-card {
+    padding: 32px 22px;
+  }
+  
+  .newsletter-box {
+    padding: 40px 24px;
+  }
+  
+  .newsletter-box .sec-title {
+    font-size: 1.8rem;
+  }
+  
+  .newsletter-input-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .newsletter-input {
+    padding: 16px 20px;
+  }
+  
+  .newsletter-btn {
+    position: static;
+    width: 100%;
+    padding: 14px;
+  }
+  
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  
+  .floating-actions {
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .floating-btn {
+    width: 46px;
+    height: 46px;
+    font-size: 1.15rem;
+  }
+  
+  .pill-roas {
+    right: -10px;
+  }
+  
+  .pill-views {
+    left: -10px;
+  }
+
+  /* Responsive Side Proposal Tab */
+  .side-proposal-tab {
+    padding: 10px 14px 10px 12px;
+    font-size: 0.78rem;
+    top: 55%;
+  }
+
+  .blurred-price-wrapper {
+    min-width: 180px;
+    padding: 8px 16px;
+  }
+
+  .price-unlock-badge {
+    padding: 5px 12px;
+    font-size: 0.72rem;
+  }
+}
+
+/* Extra Small Mobiles (<= 480px) */
+@media (max-width: 480px) {
+  .brand-logo-img {
+    height: 36px;
+    width: 36px;
+  }
+
+  .brand-title {
+    font-size: 1.05rem;
+  }
+
+  .brand-tagline {
+    font-size: 0.54rem;
+    letter-spacing: 0.5px;
+  }
+
+  .side-proposal-tab .side-tab-label {
+    display: none;
+  }
+
+  .side-proposal-tab {
+    padding: 12px;
+    border-radius: 50% 0 0 50%;
+  }
+
+  .theme-toggle-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .sec-title {
+    font-size: 1.85rem;
+  }
+  
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+  
+  .about-visual {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .orbital-container {
+    transform: scale(0.85);
+    transform-origin: center center;
+    margin: 0 auto;
+  }
+
+  .price-card {
+    padding: 36px 22px;
+  }
+
+  .industry-chips-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-hero-number {
+    font-size: 2.15rem;
+  }
+
+  .results-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-mini-value {
+    font-size: 1.35rem;
+  }
+}
