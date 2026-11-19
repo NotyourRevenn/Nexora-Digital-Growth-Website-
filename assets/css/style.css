@@ -674,24 +674,33 @@ section[id] {
   gap: 12px;
   z-index: 3;
   backdrop-filter: blur(10px);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.floating-card-pill:hover {
+  animation-play-state: paused;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.65);
 }
 
 .pill-roas {
   top: 40px;
   right: 10px;
   border-color: rgba(0, 242, 254, 0.4);
+  animation: floatBounce 4s ease-in-out infinite;
 }
 
 .pill-clients {
   bottom: 50px;
   left: 0px;
   border-color: rgba(131, 64, 255, 0.4);
+  animation: floatBounce 4.5s ease-in-out infinite reverse;
 }
 
 .pill-views {
   top: 50%;
   left: -20px;
   border-color: rgba(255, 0, 127, 0.4);
+  animation: floatBounce 5s ease-in-out infinite;
 }
 
 .pill-icon {
