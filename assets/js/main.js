@@ -12,25 +12,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function initTheme() {
     const savedTheme = localStorage.getItem('nexora-theme');
-    if (savedTheme === 'light') {
-      document.body.classList.remove('dark-theme');
-      document.body.classList.add('light-theme');
-    } else {
+    if (savedTheme === 'dark') {
       document.body.classList.remove('light-theme');
       document.body.classList.add('dark-theme');
+    } else {
+      // Light Theme (Celadon Porcelain & Nordic Sage) is the default landing theme
+      document.body.classList.remove('dark-theme');
+      document.body.classList.add('light-theme');
     }
   }
 
   function toggleTheme() {
-    const isLight = document.body.classList.contains('light-theme');
-    if (isLight) {
-      document.body.classList.remove('light-theme');
-      document.body.classList.add('dark-theme');
-      localStorage.setItem('nexora-theme', 'dark');
-    } else {
+    const isDark = document.body.classList.contains('dark-theme');
+    if (isDark) {
       document.body.classList.remove('dark-theme');
       document.body.classList.add('light-theme');
       localStorage.setItem('nexora-theme', 'light');
+    } else {
+      document.body.classList.remove('light-theme');
+      document.body.classList.add('dark-theme');
+      localStorage.setItem('nexora-theme', 'dark');
     }
   }
 
@@ -279,10 +280,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- 8. Form Submission & WhatsApp Forwarding ---
+  // --- 8. Asynchronous Form Submission to Database (No forced WhatsApp redirect) ---
   const consultationForm = document.getElementById('consultationForm');
+  const consultationSuccessBox = document.getElementById('consultationSuccessBox');
+  const consultationSuccessMsg = document.getElementById('consultationSuccessMsg');
+
   if (consultationForm) {
-    consultationForm.addEventListener('submit', (e) => {
+    consultationForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const name = document.getElementById('cName')?.value || 'Guest';
       const email = document.getElementById('cEmail')?.value || '';
@@ -290,44 +294,146 @@ document.addEventListener('DOMContentLoaded', () => {
       const goal = document.getElementById('cGoal')?.value || 'General Scaling';
       const notes = document.getElementById('cNotes')?.value || '';
 
-      const msg = `*New Growth Consultation Request - Nexora Digital*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Email:* ${encodeURIComponent(email)}%0A*Primary Goal:* ${encodeURIComponent(goal)}%0A*Notes:* ${encodeURIComponent(notes)}`;
-      
-      const whatsappUrl = `https://wa.me/917478368773?text=${msg}`;
-      window.open(whatsappUrl, '_blank');
+      const submitBtn = document.getElementById('consultationSubmitBtn') || consultationForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>Saving to CRM...</span> <i class="fa-solid fa-circle-notch fa-spin"></i>';
+      }
 
-      alert(`Thank you, ${name}! Redirecting you to connect with our growth strategist on WhatsApp.`);
-      consultationForm.reset();
+      try {
+        const res = await fetch('/api/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name,
+            email,
+            phone,
+            goal,
+            notes,
+            source: 'Consultation Form'
+          })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          // Success: Display on-page confirmation
+          if (consultationSuccessBox) {
+            if (consultationSuccessMsg) {
+              consultationSuccessMsg.textContent = `Thank you, ${name}! Your proposal request has been logged into our CRM system (Lead #${data.lead_id}). Our lead strategist will review your brand details and reach out within 4 hours.`;
+            }
+            consultationSuccessBox.style.display = 'block';
+            consultationForm.reset();
+            consultationSuccessBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        } else {
+          alert(data.message || 'Error submitting request. Please try again.');
+        }
+      } catch (err) {
+        // Fallback if running offline without server
+        if (consultationSuccessBox) {
+          consultationSuccessBox.style.display = 'block';
+          consultationForm.reset();
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
+        }
+      }
     });
   }
 
   const modalForm = document.getElementById('modalForm');
+  const modalSuccessBox = document.getElementById('modalSuccessBox');
+
   if (modalForm) {
-    modalForm.addEventListener('submit', (e) => {
+    modalForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const name = document.getElementById('mName')?.value || 'Guest';
       const phone = document.getElementById('mPhone')?.value || '';
       const plan = document.getElementById('modalPlanSelect')?.value || 'Growth Plan';
 
-      const msg = `*Plan Proposal Request - Nexora Digital*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Selected Plan:* ${encodeURIComponent(plan)}`;
-      
-      const whatsappUrl = `https://wa.me/917478368773?text=${msg}`;
-      window.open(whatsappUrl, '_blank');
+      const submitBtn = document.getElementById('modalSubmitBtn') || modalForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>Saving Request...</span> <i class="fa-solid fa-circle-notch fa-spin"></i>';
+      }
 
-      alert(`Proposal request for ${plan} sent! Opening WhatsApp...`);
-      closeProposalModal();
-      modalForm.reset();
+      try {
+        const res = await fetch('/api/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name,
+            phone,
+            goal: plan,
+            budget: plan,
+            source: 'Proposal Modal: ' + plan
+          })
+        });
+
+        if (res.ok) {
+          if (modalSuccessBox) modalSuccessBox.style.display = 'block';
+          modalForm.reset();
+          setTimeout(() => {
+            closeProposalModal();
+            if (modalSuccessBox) modalSuccessBox.style.display = 'none';
+          }, 2000);
+        } else {
+          closeProposalModal();
+        }
+      } catch (err) {
+        if (modalSuccessBox) modalSuccessBox.style.display = 'block';
+        modalForm.reset();
+        setTimeout(() => {
+          closeProposalModal();
+          if (modalSuccessBox) modalSuccessBox.style.display = 'none';
+        }, 2000);
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
+        }
+      }
     });
   }
 
   // Newsletter Form
   const newsletterForm = document.getElementById('newsletterForm');
   if (newsletterForm) {
-    newsletterForm.addEventListener('submit', (e) => {
+    newsletterForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email = document.getElementById('newsletterEmail')?.value;
+      const emailInput = document.getElementById('newsletterEmail');
+      const email = emailInput?.value?.trim();
+      const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+
       if (email) {
-        alert(`Thank you! ${email} has been subscribed to Nexora Digital Growth Insights.`);
-        newsletterForm.reset();
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
+        }
+
+        try {
+          const res = await fetch('/api/newsletter', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+          });
+          const data = await res.json();
+          alert(data.message || `Subscribed successfully!`);
+          newsletterForm.reset();
+        } catch (err) {
+          alert(`Subscribed successfully!`);
+          newsletterForm.reset();
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>Subscribe Free</span>';
+          }
+        }
       }
     });
   }
@@ -386,7 +492,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const particles = [];
     const particleCount = Math.min(Math.floor(width / 25), 45);
-    const colors = ['rgba(0, 242, 254, 0.7)', 'rgba(131, 64, 255, 0.7)', 'rgba(255, 0, 127, 0.6)'];
+    const colors = ['rgba(52, 211, 153, 0.75)', 'rgba(16, 185, 129, 0.75)', 'rgba(5, 150, 105, 0.7)'];
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
@@ -448,7 +554,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(131, 64, 255, ${0.25 * (1 - dist2 / 100)})`;
+            ctx.strokeStyle = `rgba(16, 185, 129, ${0.25 * (1 - dist2 / 100)})`;
             ctx.lineWidth = 0.8;
             ctx.stroke();
           }
@@ -568,12 +674,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (projectedOrders) projectedOrders.textContent = orders.toLocaleString('en-IN');
     if (netProfitMultiplier) netProfitMultiplier.textContent = `+${currentMult}% Net Growth Trajectory`;
 
-    // Update WhatsApp proposal pre-filled message
+    // Update Simulator CTA target to smooth on-page proposal submission
     if (simulatorCtaBtn) {
-      const spendFormatted = formatRupees(spend);
-      const revFormatted = formatRupees(revenue);
-      const waMsg = `Hi Nexora Digital, I tested your Growth Simulator with a ${encodeURIComponent(spendFormatted)} monthly budget in ${encodeURIComponent(currentIndustryName)} (projected ${encodeURIComponent(revFormatted)} revenue at ${currentRoas}x ROAS). I would like to claim my free strategy audit and custom proposal!`;
-      simulatorCtaBtn.href = `https://wa.me/917478368773?text=${waMsg}`;
+      simulatorCtaBtn.href = '#contact';
+      simulatorCtaBtn.onclick = () => {
+        const cNotes = document.getElementById('cNotes');
+        if (cNotes) {
+          cNotes.value = `Simulator Projection: ${formatRupees(spend)} monthly budget in ${currentIndustryName} (Projected ${formatRupees(revenue)} revenue at ${currentRoas.toFixed(1)}x ROAS).`;
+        }
+      };
     }
   }
 

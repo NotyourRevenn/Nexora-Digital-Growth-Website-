@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexora Digital – Creative Agency CRM &amp; Admin Command</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Creative Admin Stylesheet -->
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+
+  <!-- Ambient Dynamic Radial Glow Backdrop -->
+  <div class="ambient-glow"></div>
+
+  <div class="admin-layout">
+
+    <!-- ==========================================================================
+         1. CREATIVE AGENCY SIDEBAR NAVIGATION
+         ========================================================================== -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      
+      <!-- Brand Logo Header -->
+      <div class="sidebar-header">
+        <img src="../assets/img/logo-clean.png" alt="Nexora Logo" class="sidebar-logo">
+        <div class="sidebar-brand-text">
+          <div class="sidebar-brand-name">NEXORA <span>COMMAND</span></div>
+          <div class="sidebar-brand-tag">Agency Growth OS</div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="sidebar-nav">
+        <a href="#leads" class="nav-item active" id="navLeads" data-tab="leads">
+          <i class="fa-solid fa-bolt-lightning" style="color: var(--cyan);"></i>
+          <span>Pipeline &amp; Leads</span>
+          <span class="nav-counter" id="leadsCounter">0</span>
+        </a>
+
+        <a href="#subscribers" class="nav-item" id="navSubscribers" data-tab="subscribers">
+          <i class="fa-solid fa-paper-plane" style="color: var(--violet);"></i>
+          <span>Subscribers</span>
+          <span class="nav-counter" id="subsCounter" style="color: var(--violet); background: rgba(139, 92, 246, 0.15);">0</span>
+        </a>
+
+        <a href="#settings" class="nav-item" id="navSettings" data-tab="settings">
+          <i class="fa-solid fa-sliders" style="color: var(--magenta);"></i>
+          <span>Portal Settings</span>
+        </a>
+
+        <div style="height: 1px; background: var(--border-subtle); margin: 12px 0;"></div>
+
+        <button type="button" class="btn-action btn-action-creative" id="btnOpenNewLeadModal" style="width: 100%; justify-content: center; margin-bottom: 8px;">
+          <i class="fa-solid fa-plus"></i>
+          <span>Log New Lead</span>
+        </button>
+
+        <a href="../index.html" target="_blank" class="nav-item">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <span>Live Agency Site</span>
+        </a>
+      </nav>
+
+      <!-- Sidebar User Profile Footer -->
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <div class="user-avatar" id="userAvatar">A</div>
+          <div class="user-info">
+            <div class="user-name" id="displayUsername">Admin</div>
+            <div class="user-role">Lead Strategist</div>
+          </div>
+        </div>
+        <button type="button" class="btn-sidebar-logout" id="logoutBtn" title="Log Out">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
+      </div>
+
+    </aside>
+
+    <!-- ==========================================================================
+         2. MAIN WORKSPACE CONTENT
+         ========================================================================== -->
+    <main class="admin-main">
+      
+      <!-- Topbar Header -->
+      <header class="admin-topbar">
+        <div class="topbar-title-block">
+          <h2 id="viewTitle">Agency Leads &amp; Growth Pipeline</h2>
+          <p id="viewSubtitle">Real-time consultation requests, ad spend forecasts &amp; client status.</p>
+        </div>
+
+        <div class="topbar-actions">
+          <!-- View Mode Switcher: Table vs. Kanban -->
+          <div class="view-switcher" id="viewModeSwitcher">
+            <button type="button" class="view-btn active" id="btnViewTable" title="Table View">
+              <i class="fa-solid fa-list-ul"></i>
+              <span>Table</span>
+            </button>
+            <button type="button" class="view-btn" id="btnViewKanban" title="Kanban Pipeline Board">
+              <i class="fa-solid fa-table-columns"></i>
+              <span>Board</span>
+            </button>
+          </div>
+
+          <button type="button" class="btn-action btn-secondary" id="btnRefresh" title="Refresh Live Data (Hotkey: R)">
+            <i class="fa-solid fa-rotate"></i>
+            <span>Sync</span>
+          </button>
+          <button type="button" class="btn-action btn-primary" id="btnExportCsv" title="Export to Excel / CSV">
+            <i class="fa-solid fa-file-arrow-down"></i>
+            <span>Export CSV</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Body Container -->
+      <div class="content-body">
+
+        <!-- ====================================================================
+             TAB 1: LEADS & CRM PIPELINE
+             ==================================================================== -->
+        <section id="tabLeadsSection" class="tab-content-block">
+
+          <!-- Creative Agency Command Hero Banner -->
+          <div class="agency-command-banner">
+            <div class="command-banner-top">
+              <div class="banner-welcome">
+                <h3>Welcome back, <span class="gradient-text">Growth Commander</span> ⚡</h3>
+                <p>Nexora Digital Performance Engine • <span id="currentLiveClock">Live</span> • Where Brands Meet Scale</p>
+              </div>
+
+              <!-- Agency Stickers & Badges -->
+              <div class="agency-sticker-strip">
+                <span class="sticker-badge roas"><i class="fa-solid fa-bolt"></i> 4.9★ Target ROAS</span>
+                <span class="sticker-badge live">Live Database Sync</span>
+                <button type="button" class="btn-action btn-action-creative" id="btnBannerNewLead">
+                  <i class="fa-solid fa-plus"></i>
+                  <span>+ Add Lead</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Dynamic Multi-Channel Distribution Bar -->
+            <div class="channel-distribution-strip">
+              <div class="distribution-meta">
+                <span><strong>Growth Channel Demand:</strong> Pipeline Distribution</span>
+                <span id="distributionSummary">Calculating active volume...</span>
+              </div>
+              <div class="distribution-bar" id="distributionBar">
+                <div class="bar-segment meta" style="width: 35%;" title="Meta Ads (35%)"></div>
+                <div class="bar-segment google" style="width: 25%;" title="Google P-Max (25%)"></div>
+                <div class="bar-segment viral" style="width: 20%;" title="Viral Reels (20%)"></div>
+                <div class="bar-segment linkedin" style="width: 10%;" title="LinkedIn B2B (10%)"></div>
+                <div class="bar-segment full" style="width: 10%;" title="Full-Funnel (10%)"></div>
+              </div>
+              <div class="distribution-legend">
+                <div class="legend-item"><span class="legend-dot" style="background: #00f2fe;"></span> Meta Ads</div>
+                <div class="legend-item"><span class="legend-dot" style="background: #fbbc05;"></span> Google Ads</div>
+                <div class="legend-item"><span class="legend-dot" style="background: #ff007f;"></span> Viral Reels</div>
+                <div class="legend-item"><span class="legend-dot" style="background: #0a66c2;"></span> LinkedIn B2B</div>
+                <div class="legend-item"><span class="legend-dot" style="background: #10b981;"></span> Full-Funnel</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bold Creative Stats & KPI Cards Grid -->
+          <div class="stats-grid">
+            
+            <div class="stat-card cyan">
+              <div class="stat-header">
+                <div class="stat-icon cyan"><i class="fa-solid fa-users-viewfinder"></i></div>
+                <span class="stat-badge" style="color: var(--cyan); background: rgba(0, 242, 254, 0.1);">All Time</span>
+              </div>
+              <div class="stat-value" id="kpiTotalLeads">--</div>
+              <div class="stat-label">Total Client Inquiries</div>
+            </div>
+
+            <div class="stat-card emerald">
+              <div class="stat-header">
+                <div class="stat-icon emerald"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                <span class="stat-badge" style="color: var(--emerald); background: rgba(16, 185, 129, 0.15);">Action Needed 🔥</span>
+              </div>
+              <div class="stat-value" id="kpiNewInquiries">--</div>
+              <div class="stat-label">Fresh Leads To Contact</div>
+            </div>
+
+            <div class="stat-card amber">
+              <div class="stat-header">
+                <div class="stat-icon amber"><i class="fa-solid fa-handshake"></i></div>
+                <span class="stat-badge" style="color: var(--amber); background: rgba(245, 158, 11, 0.15);">In Discussion</span>
+              </div>
+              <div class="stat-value" id="kpiInPipeline">--</div>
+              <div class="stat-label">Active Growth Proposals</div>
+            </div>
+
+            <div class="stat-card magenta">
+              <div class="stat-header">
+                <div class="stat-icon magenta"><i class="fa-solid fa-trophy"></i></div>
+                <span class="stat-badge" id="kpiWinRate" style="color: #fff; background: linear-gradient(135deg, var(--magenta), var(--violet));">0% Win</span>
+              </div>
+              <div class="stat-value" id="kpiWonClients">--</div>
+              <div class="stat-label">Won Revenue Partners</div>
+            </div>
+
+          </div>
+
+          <!-- Filter & Action Toolbar -->
+          <div class="toolbar-card">
+            
+            <div class="toolbar-left">
+              <!-- Status Pills Tabs with Creative Count Badges -->
+              <div class="status-tabs" id="statusFilterTabs">
+                <button type="button" class="status-tab active" data-status="ALL">
+                  🔥 All <span class="count" id="countAll">0</span>
+                </button>
+                <button type="button" class="status-tab" data-status="NEW">
+                  ⚡ New <span class="count" id="countNew">0</span>
+                </button>
+                <button type="button" class="status-tab" data-status="CONTACTED">
+                  💬 Contacted <span class="count" id="countContacted">0</span>
+                </button>
+                <button type="button" class="status-tab" data-status="QUALIFIED">
+                  🎯 Qualified <span class="count" id="countQualified">0</span>
+                </button>
+                <button type="button" class="status-tab" data-status="PROPOSAL_SENT">
+                  📄 Proposal <span class="count" id="countProposal">0</span>
+                </button>
+                <button type="button" class="status-tab" data-status="WON">
+                  🏆 Won <span class="count" id="countWon">0</span>
+                </button>
+                <button type="button" class="status-tab" data-status="LOST">
+                  Muted <span class="count" id="countLost">0</span>
+                </button>
+              </div>
+
+              <!-- Channel Filter Dropdown -->
+              <select id="goalFilterSelect" class="filter-select">
+                <option value="ALL">All Growth Channels</option>
+                <option value="Meta Ads">Meta Ads (FB &amp; IG)</option>
+                <option value="Google Ads">Google Ads (P-Max)</option>
+                <option value="Viral Video">Viral Reels Studio</option>
+                <option value="LinkedIn">LinkedIn B2B</option>
+                <option value="Full-Funnel">Full-Funnel Scale</option>
+              </select>
+            </div>
+
+            <div class="toolbar-right">
+              <!-- Live Search Input with Keyboard Shortcut Indicator -->
+              <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="leadSearchInput" placeholder="Search client name, phone, budget...">
+                <kbd>/</kbd>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- VIEW 1: CREATIVE DATA TABLE -->
+          <div class="table-card" id="tableViewContainer">
+            <div class="table-responsive">
+              <table class="crm-table">
+                <thead>
+                  <tr>
+                    <th>Brand &amp; Client</th>
+                    <th>Direct Contact</th>
+                    <th>Growth Focus</th>
+                    <th>Ad Budget</th>
+                    <th>Acquisition Source</th>
+                    <th>Pipeline Stage</th>
+                    <th style="text-align: right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="leadsTableBody">
+                  <tr>
+                    <td colspan="7" style="text-align: center; padding: 45px; color: var(--text-dim);">
+                      <i class="fa-solid fa-circle-notch fa-spin"></i> Synchronizing Nexora Pipeline...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- VIEW 2: VISUAL KANBAN PIPELINE BOARD -->
+          <div class="kanban-board" id="kanbanViewContainer" style="display: none;">
+            
+            <!-- Column 1: New -->
+            <div class="kanban-col">
+              <div class="kanban-col-header">
+                <span class="kanban-col-title" style="color: var(--cyan);">
+                  <span class="kanban-dot" style="background: var(--cyan); box-shadow: 0 0 10px var(--cyan);"></span> New Inquiries
+                </span>
+                <span class="kanban-col-count" id="kCountNew">0</span>
+              </div>
+              <div class="kanban-cards-list" id="kColNew"></div>
+            </div>
+
+            <!-- Column 2: Contacted -->
+            <div class="kanban-col">
+              <div class="kanban-col-header">
+                <span class="kanban-col-title" style="color: var(--amber);">
+                  <span class="kanban-dot" style="background: var(--amber); box-shadow: 0 0 10px var(--amber);"></span> Contacted
+                </span>
+                <span class="kanban-col-count" id="kCountContacted">0</span>
+              </div>
+              <div class="kanban-cards-list" id="kColContacted"></div>
+            </div>
+
+            <!-- Column 3: Qualified -->
+            <div class="kanban-col">
+              <div class="kanban-col-header">
+                <span class="kanban-col-title" style="color: #c084fc;">
+                  <span class="kanban-dot" style="background: #c084fc; box-shadow: 0 0 10px #c084fc;"></span> Qualified Fit
+                </span>
+                <span class="kanban-col-count" id="kCountQualified">0</span>
+              </div>
+              <div class="kanban-cards-list" id="kColQualified"></div>
+            </div>
+
+            <!-- Column 4: Proposal Sent -->
+            <div class="kanban-col">
+              <div class="kanban-col-header">
+                <span class="kanban-col-title" style="color: #60a5fa;">
+                  <span class="kanban-dot" style="background: #60a5fa; box-shadow: 0 0 10px #60a5fa;"></span> Proposal Sent
+                </span>
+                <span class="kanban-col-count" id="kCountProposal">0</span>
+              </div>
+              <div class="kanban-cards-list" id="kColProposal"></div>
+            </div>
+
+            <!-- Column 5: Won -->
+            <div class="kanban-col">
+              <div class="kanban-col-header">
+                <span class="kanban-col-title" style="color: var(--emerald);">
+                  <span class="kanban-dot" style="background: var(--emerald); box-shadow: 0 0 10px var(--emerald);"></span> Won Partners 🏆
+                </span>
+                <span class="kanban-col-count" id="kCountWon">0</span>
+              </div>
+              <div class="kanban-cards-list" id="kColWon"></div>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- ====================================================================
+             TAB 2: NEWSLETTER SUBSCRIBERS
+             ==================================================================== -->
+        <section id="tabSubscribersSection" class="tab-content-block" style="display: none;">
+          <div class="table-card">
+            <div class="table-responsive">
+              <table class="crm-table">
+                <thead>
+                  <tr>
+                    <th>Subscriber ID</th>
+                    <th>Email Address</th>
+                    <th>Subscribed Timestamp</th>
+                    <th style="text-align: right;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="subsTableBody">
+                  <tr>
+                    <td colspan="4" style="text-align: center; padding: 40px; color: var(--text-dim);">
+                      <i class="fa-solid fa-circle-notch fa-spin"></i> Loading Subscribers...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             TAB 3: SETTINGS & ADMIN MANAGEMENT
+             ==================================================================== -->
+        <section id="tabSettingsSection" class="tab-content-block" style="display: none;">
+          <div style="max-width: 600px;">
+            
+            <!-- Change Password Card -->
+            <div class="table-card" style="padding: 26px; margin-bottom: 22px;">
+              <h3 style="font-family: var(--font-display); font-size: 1.15rem; color: #fff; margin-bottom: 6px;">
+                <i class="fa-solid fa-key" style="color: var(--cyan); margin-right: 8px;"></i> Change Admin Password
+              </h3>
+              <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 18px;">
+                Update your administrative login credentials to maintain portal security.
+              </p>
+
+              <form id="changePasswordForm">
+                <div class="form-group">
+                  <label class="form-label">Current Password</label>
+                  <input type="password" id="currentPassword" class="form-input" placeholder="••••••••" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">New Password (Min 6 Characters)</label>
+                  <input type="password" id="newPassword" class="form-input" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-action btn-primary" style="padding: 10px 22px;">
+                  <span>Update Password</span>
+                </button>
+              </form>
+            </div>
+
+            <!-- Database Info Card -->
+            <div class="table-card" style="padding: 26px;">
+              <h3 style="font-family: var(--font-display); font-size: 1.15rem; color: #fff; margin-bottom: 6px;">
+                <i class="fa-solid fa-database" style="color: var(--violet); margin-right: 8px;"></i> SQLite Engine Storage
+              </h3>
+              <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">
+                Powered by a zero-maintenance local SQLite database engine (<code>nexora.db</code>). All leads, proposals, and subscriber data are stored safely on your machine.
+              </p>
+              <button type="button" class="btn-action btn-secondary" onclick="window.location.href='/api/leads/export'">
+                <i class="fa-solid fa-download"></i>
+                <span>Download Full Database Backup (CSV)</span>
+              </button>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ==========================================================================
+       3. SLIDE-OVER INSPECTION DRAWER
+       ========================================================================== -->
+  <div class="drawer-backdrop" id="leadDrawerBackdrop">
+    <div class="lead-slide-drawer">
+      
+      <!-- Drawer Header -->
+      <div class="drawer-header">
+        <div>
+          <h3 id="drawerLeadName">Lead Profile</h3>
+          <span id="drawerLeadDate" style="font-size: 0.72rem; color: var(--text-dim);">--</span>
+        </div>
+        <button type="button" class="btn-icon-action" id="btnCloseDrawer" style="color: var(--text-muted);">
+          <i class="fa-solid fa-xmark" style="font-size: 1.1rem;"></i>
+        </button>
+      </div>
+
+      <!-- Drawer Body -->
+      <div class="drawer-body">
+        
+        <!-- Quick Action CTAs -->
+        <div class="drawer-actions-strip">
+          <a href="#" target="_blank" class="btn-drawer-cta btn-drawer-wa" id="drawerWaBtn">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>Chat on WhatsApp</span>
+          </a>
+          <a href="#" class="btn-drawer-cta btn-drawer-call" id="drawerCallBtn">
+            <i class="fa-solid fa-phone"></i>
+            <span>Direct Call</span>
+          </a>
+        </div>
+
+        <!-- Specifications Spec Card -->
+        <div class="drawer-spec-card">
+          <div class="drawer-row">
+            <span class="drawer-label">Pipeline Status</span>
+            <span class="drawer-val" id="drawerStatusPill">--</span>
+          </div>
+          <div class="drawer-row">
+            <span class="drawer-label">Phone</span>
+            <span class="drawer-val" id="drawerPhone" style="cursor: pointer;" title="Click to copy">--</span>
+          </div>
+          <div class="drawer-row">
+            <span class="drawer-label">Email Address</span>
+            <span class="drawer-val" id="drawerEmail" style="cursor: pointer;" title="Click to copy">--</span>
+          </div>
+          <div class="drawer-row">
+            <span class="drawer-label">Target Channel</span>
+            <span class="drawer-val" id="drawerGoal">--</span>
+          </div>
+          <div class="drawer-row">
+            <span class="drawer-label">Monthly Ad Spend</span>
+            <span class="drawer-val" id="drawerBudget" style="color: var(--emerald); font-weight: 700;">--</span>
+          </div>
+          <div class="drawer-row">
+            <span class="drawer-label">Acquisition Source</span>
+            <span class="drawer-val" id="drawerSource">--</span>
+          </div>
+        </div>
+
+        <!-- Client Message Bubble -->
+        <label class="form-label">Client Inquiry Scope / Notes</label>
+        <div class="drawer-quote-bubble" id="drawerNotes">
+          No additional notes provided.
+        </div>
+
+        <!-- Internal Agency Follow-up Notes -->
+        <div style="margin-top: 10px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+            <label class="form-label" style="color: var(--cyan); margin: 0;">Internal CRM Team Notes</label>
+            <span id="notesSaveIndicator" style="font-size: 0.72rem; color: var(--text-dim);"></span>
+          </div>
+          <textarea id="drawerInternalNotes" class="form-textarea" placeholder="Add private notes on call discussion, ROAS targets, quoted scope, meeting notes..."></textarea>
+        </div>
+
+      </div>
+
+      <!-- Drawer Footer -->
+      <div class="drawer-footer">
+        <button type="button" class="btn-action btn-secondary" onclick="window.deleteCurrentLead()">
+          <i class="fa-regular fa-trash-can" style="color: var(--rose);"></i>
+          <span>Delete Lead</span>
+        </button>
+        <button type="button" class="btn-action btn-primary" id="btnSaveDrawerNotes">
+          <i class="fa-solid fa-floppy-disk"></i>
+          <span>Save Notes</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       4. LOG NEW LEAD MODAL (MANUAL ENTRY)
+       ========================================================================== -->
+  <div class="modal-backdrop" id="manualLeadModal">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-plus" style="color: var(--cyan); margin-right: 8px;"></i> Log New Brand Inquiry</h3>
+        <button type="button" class="btn-icon-action" id="btnCloseManualLeadModal" style="color: var(--text-muted);">&times;</button>
+      </div>
+
+      <form id="manualLeadForm">
+        <div class="modal-body">
+          
+          <div class="form-group">
+            <label class="form-label">Client / Founder Name *</label>
+            <input type="text" id="mLeadName" class="form-input" placeholder="e.g. Vikram Singhal" required>
+          </div>
+
+          <div class="form-group-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label">Phone / WhatsApp *</label>
+              <input type="tel" id="mLeadPhone" class="form-input" placeholder="+91 98765 43210" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" id="mLeadEmail" class="form-input" placeholder="client@brand.com">
+            </div>
+          </div>
+
+          <div class="form-group-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label">Target Channel Focus</label>
+              <select id="mLeadGoal" class="form-select">
+                <option value="Meta Ads (FB &amp; IG)">Meta Ads (FB &amp; IG)</option>
+                <option value="Google Ads (P-Max)">Google Ads (Search &amp; P-Max)</option>
+                <option value="Viral Reels &amp; TikTok">Viral Reels Studio</option>
+                <option value="LinkedIn B2B Pipeline">LinkedIn B2B Pipeline</option>
+                <option value="Full-Funnel Omnichannel">Full-Funnel Omnichannel</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Monthly Ad Spend</label>
+              <input type="text" id="mLeadBudget" class="form-input" placeholder="e.g. ₹2,00,000 / mo">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Lead Source</label>
+            <select id="mLeadSource" class="form-select">
+              <option value="Direct Call / WhatsApp">Direct Call / WhatsApp</option>
+              <option value="Referral / Founder Network">Referral / Founder Network</option>
+              <option value="Instagram / LinkedIn DM">Instagram / LinkedIn DM</option>
+              <option value="Website Walk-in">Website Walk-in</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Client Scope / Requirement Details</label>
+            <textarea id="mLeadNotes" class="form-textarea" placeholder="Brand niche, current ROAS, growth bottlenecks, target timeline..."></textarea>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-action btn-secondary" id="btnCancelManualLead">Cancel</button>
+          <button type="submit" class="btn-action btn-primary" id="btnSubmitManualLead">
+            <i class="fa-solid fa-check"></i>
+            <span>Save to Pipeline</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Admin Controller -->
+  <script src="/admin/admin.js"></script>
+</body>
+</html>

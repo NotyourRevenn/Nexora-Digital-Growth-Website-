@@ -22,10 +22,10 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
 
-  <!-- Google Fonts: Poppins (Xolio Typography Standard) -->
+  <!-- Google Fonts: Syne (Architectural Display Headings) + Plus Jakarta Sans (Minimal Body & UI) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 
   <!-- Font Awesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -33,8 +33,24 @@
   <!-- Custom Stylesheets (Xolio Aesthetic) -->
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <!-- Inline Theme Initialization (Light Theme Default, Zero FOUC) -->
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('nexora-theme');
+        if (savedTheme === 'dark') {
+          document.documentElement.classList.add('dark-theme');
+          document.addEventListener('DOMContentLoaded', function () {
+            document.body.classList.remove('light-theme');
+            document.body.classList.add('dark-theme');
+          });
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
-<body>
+<body class="light-theme">
 
   <!-- Interactive Magnetic Neon Cursor -->
   <div class="cursor-dot" id="cursorDot"></div>
@@ -145,15 +161,15 @@
       <!-- Interactive Constellation Particles Canvas -->
       <canvas id="heroCanvas" class="hero-canvas"></canvas>
       
-      <!-- SVG Decorative Doodles in Logo Colors -->
+      <!-- SVG Decorative Doodles in Nordic Sage & Mint Tones -->
       <svg class="doodle-shape doodle-bounce" style="top: 140px; left: 4%; width: 42px; opacity: 0.8;" viewBox="0 0 50 50">
-        <path d="M10 25 Q25 5 40 25 T10 25" fill="none" stroke="#00f2fe" stroke-width="4" stroke-linecap="round"/>
+        <path d="M10 25 Q25 5 40 25 T10 25" fill="none" stroke="#34d399" stroke-width="4" stroke-linecap="round"/>
       </svg>
       <svg class="doodle-shape doodle-spin" style="bottom: 120px; left: 8%; width: 32px; opacity: 0.7;" viewBox="0 0 50 50">
-        <polygon points="25,2 32,18 49,18 35,29 40,46 25,36 10,46 15,29 1,18 18,18" fill="#8340ff"/>
+        <polygon points="25,2 32,18 49,18 35,29 40,46 25,36 10,46 15,29 1,18 18,18" fill="#10b981"/>
       </svg>
       <svg class="doodle-shape doodle-pulse" style="top: 180px; right: 5%; width: 36px; opacity: 0.8;" viewBox="0 0 50 50">
-        <circle cx="25" cy="25" r="18" fill="none" stroke="#ff007f" stroke-width="3" stroke-dasharray="6,6"/>
+        <circle cx="25" cy="25" r="18" fill="none" stroke="#6ee7b7" stroke-width="3" stroke-dasharray="6,6"/>
       </svg>
 
       <div class="container">
@@ -173,7 +189,7 @@
             </h1>
 
             <p class="hero-desc">
-              From data-backed strategy to creative execution, everything your brand needs to scale, generate high-intent leads, and maximize ROAS — all under one unified roof.
+              Data-backed performance marketing, high-converting creative, and full-funnel scaling engineered for predictable ROAS.
             </p>
 
             <div class="hero-cta-group">
@@ -241,50 +257,50 @@
                 </div>
               </div>
 
-              <!-- Claymorphic 3D Illustration SVG in Nexora Logo Theme -->
+              <!-- Claymorphic 3D Illustration SVG in Nordic Sage & Forest Slate Theme -->
               <svg width="340" height="340" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                   <linearGradient id="bulbGrad" x1="50" y1="50" x2="350" y2="350" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#00f2fe"/>
-                    <stop offset="0.5" stop-color="#8340ff"/>
-                    <stop offset="1" stop-color="#ff007f"/>
+                    <stop stop-color="#34d399"/>
+                    <stop offset="0.5" stop-color="#10b981"/>
+                    <stop offset="1" stop-color="#059669"/>
                   </linearGradient>
                   <linearGradient id="clayShadow" x1="0" y1="0" x2="400" y2="400">
                     <stop stop-color="#ffffff" stop-opacity="0.8"/>
-                    <stop offset="1" stop-color="#090833"/>
+                    <stop offset="1" stop-color="#0a1410"/>
                   </linearGradient>
                   <filter id="clayDrop" x="-20%" y="-20%" width="140%" height="140%">
-                    <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.5"/>
+                    <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.45"/>
                   </filter>
                 </defs>
 
                 <!-- 3D Clay Base Podium -->
-                <ellipse cx="200" cy="310" rx="150" ry="40" fill="#0d0b45" filter="url(#clayDrop)"/>
-                <ellipse cx="200" cy="305" rx="140" ry="34" fill="#131054"/>
+                <ellipse cx="200" cy="310" rx="150" ry="40" fill="#0c1713" filter="url(#clayDrop)"/>
+                <ellipse cx="200" cy="305" rx="140" ry="34" fill="#101e19"/>
 
                 <!-- 3D Central Lightbulb / Idea Engine -->
                 <path d="M150 170 C150 110, 250 110, 250 170 C250 205, 225 225, 225 250 L175 250 C175 225, 150 205, 150 170 Z" fill="url(#bulbGrad)" filter="url(#clayDrop)"/>
                 <rect x="180" y="255" width="40" height="8" rx="4" fill="#ffffff" opacity="0.9"/>
                 <rect x="185" y="267" width="30" height="8" rx="4" fill="#ffffff" opacity="0.9"/>
-                <ellipse cx="200" cy="278" rx="10" ry="5" fill="#00f2fe"/>
+                <ellipse cx="200" cy="278" rx="10" ry="5" fill="#34d399"/>
 
                 <!-- 3D Floating Growth Spheres -->
-                <circle cx="110" cy="140" r="32" fill="#8340ff" filter="url(#clayDrop)"/>
+                <circle cx="110" cy="140" r="32" fill="#10b981" filter="url(#clayDrop)"/>
                 <circle cx="102" cy="132" r="8" fill="#ffffff" opacity="0.6"/>
 
-                <circle cx="290" cy="130" r="38" fill="#ff007f" filter="url(#clayDrop)"/>
+                <circle cx="290" cy="130" r="38" fill="#6ee7b7" filter="url(#clayDrop)"/>
                 <circle cx="280" cy="120" r="10" fill="#ffffff" opacity="0.6"/>
 
-                <circle cx="200" cy="70" r="22" fill="#00f2fe" filter="url(#clayDrop)"/>
+                <circle cx="200" cy="70" r="22" fill="#34d399" filter="url(#clayDrop)"/>
                 <circle cx="195" cy="65" r="5" fill="#ffffff" opacity="0.7"/>
 
                 <!-- 3D Clay Tablet Screen -->
-                <rect x="120" y="210" width="160" height="100" rx="18" fill="#120f4b" stroke="rgba(0, 242, 254, 0.4)" stroke-width="2" filter="url(#clayDrop)"/>
-                <rect x="135" y="225" width="70" height="10" rx="5" fill="#00f2fe"/>
+                <rect x="120" y="210" width="160" height="100" rx="18" fill="#101e19" stroke="rgba(52, 211, 153, 0.35)" stroke-width="2" filter="url(#clayDrop)"/>
+                <rect x="135" y="225" width="70" height="10" rx="5" fill="#34d399"/>
                 <rect x="135" y="245" width="130" height="6" rx="3" fill="rgba(255,255,255,0.2)"/>
                 <rect x="135" y="258" width="110" height="6" rx="3" fill="rgba(255,255,255,0.2)"/>
                 <rect x="135" y="271" width="90" height="6" rx="3" fill="rgba(255,255,255,0.2)"/>
-                <circle cx="250" cy="235" r="12" fill="#ff007f"/>
+                <circle cx="250" cy="235" r="12" fill="#10b981"/>
               </svg>
 
             </div>
@@ -335,7 +351,7 @@
             <span class="sub-title"><i class="fa-solid fa-compass"></i> About Nexora Digital</span>
             <h2 class="sec-title">More than services, we build <span style="color: var(--primary);">growth partnerships</span>.</h2>
             <p class="sec-desc" style="margin: 0 0 20px 0; font-size: 1.05rem;">
-              We don't believe in one-size-fits-all packages or vanity metrics that look pretty on slides but don't pay bills. We work with brands at every lifecycle stage — from ambitious startups to established market leaders — and scale the same battle-tested playbook to fit your exact goals.
+              We build revenue-focused partnerships, not vanity metrics. Battle-tested playbooks engineered around your exact unit economics and growth targets.
             </p>
 
             <div class="about-features-grid">
@@ -346,7 +362,7 @@
                 </div>
                 <div class="about-feature-text">
                   <h4>Unit Economics First</h4>
-                  <p>Precision plans engineered around your bottom-line revenue goals and unit economics.</p>
+                  <p>Revenue-first strategy engineered around bottom-line profit.</p>
                 </div>
               </div>
 
@@ -356,7 +372,7 @@
                 </div>
                 <div class="about-feature-text">
                   <h4>Scroll-Stopping Creative</h4>
-                  <p>Viral reel hooks and high-converting copy that commands attention in feeds.</p>
+                  <p>Viral reels and ad copy designed to stop the scroll and convert.</p>
                 </div>
               </div>
 
@@ -366,7 +382,7 @@
                 </div>
                 <div class="about-feature-text">
                   <h4>Attribution Architecture</h4>
-                  <p>Meta Pixel, CAPI, GA4, and CRM pipelines that turn raw data into predictable profit.</p>
+                  <p>Server-side CAPI and analytics for clean, reliable tracking.</p>
                 </div>
               </div>
 
@@ -376,7 +392,7 @@
                 </div>
                 <div class="about-feature-text">
                   <h4>Transparent Dashboards</h4>
-                  <p>Weekly reviews and live dashboard access so you always know where every rupee goes.</p>
+                  <p>Real-time dashboards and weekly sprint reviews with zero fluff.</p>
                 </div>
               </div>
 
@@ -429,7 +445,7 @@
                 <div class="orbit-node node-reels" title="Viral Reels Production" data-channel="Viral Studio" data-stat="10M+ Video Views" data-color="#ff007f">
                   <i class="fa-solid fa-video"></i>
                 </div>
-                <div class="orbit-node node-seo" title="Compounding SEO Growth" data-channel="Organic SEO" data-stat="Top 3 SERP Ranks" data-color="#00f2fe">
+                <div class="orbit-node node-seo" title="Compounding SEO Growth" data-channel="Organic SEO" data-stat="Top 3 SERP Ranks" data-color="#34d399">
                   <i class="fa-solid fa-chart-line"></i>
                 </div>
               </div>
@@ -449,7 +465,7 @@
           <span class="sub-title"><i class="fa-solid fa-shapes"></i> Our Capabilities</span>
           <h2 class="sec-title">Digital, But Done Differently.</h2>
           <p class="sec-desc">
-            From strategy to execution, everything your brand needs to capture market share, drive qualified traffic, and turn attention into loyal paying customers.
+            Full-funnel capabilities built to capture demand, scale traffic, and convert visitors into paying customers.
           </p>
         </div>
 
@@ -462,12 +478,12 @@
             </div>
             <h3 class="service-title">Social Media Marketing</h3>
             <p class="service-desc">
-              Build an authentic, high-engagement brand presence across Instagram, Facebook, and LinkedIn with cohesive aesthetic, strategic posting calendars, and community engagement.
+              Aesthetic grid curation, strategic calendars, and active community growth across Meta and LinkedIn.
             </p>
             <ul class="service-features-list">
               <li><i class="fa-solid fa-check"></i> Grid curation &amp; brand aesthetic</li>
-              <li><i class="fa-solid fa-check"></i> Strategic hashtag &amp; reach framework</li>
-              <li><i class="fa-solid fa-check"></i> Active comment &amp; DM engagement</li>
+              <li><i class="fa-solid fa-check"></i> Strategic reach framework</li>
+              <li><i class="fa-solid fa-check"></i> Active DM &amp; comment engagement</li>
             </ul>
             <a href="#contact" class="service-card-link" data-open-modal data-plan="Social Media Marketing">
               <span>Get Started</span> <i class="fa-solid fa-arrow-right"></i>
@@ -481,11 +497,11 @@
             </div>
             <h3 class="service-title">Google Ads (P-Max &amp; Search)</h3>
             <p class="service-desc">
-              Capture high-intent buyers at the exact moment they search for your solutions. High-converting Search, Display, Shopping, and AI-powered Performance Max campaigns.
+              High-intent Search, Shopping, and AI Performance Max campaigns capturing ready-to-buy searchers.
             </p>
             <ul class="service-features-list">
               <li><i class="fa-solid fa-check"></i> High-intent keyword bidding</li>
-              <li><i class="fa-solid fa-check"></i> AI-driven Performance Max setups</li>
+              <li><i class="fa-solid fa-check"></i> AI Performance Max setups</li>
               <li><i class="fa-solid fa-check"></i> Negative keyword waste reduction</li>
             </ul>
             <a href="#contact" class="service-card-link" data-open-modal data-plan="Google Ads (P-Max)">
@@ -500,12 +516,12 @@
             </div>
             <h3 class="service-title">Meta Ads (FB &amp; Instagram)</h3>
             <p class="service-desc">
-              Hyper-targeted customer acquisition funnels, rapid creative testing frameworks, dynamic retargeting, and Conversion API integration engineered for aggressive ROAS scaling.
+              Rapid creative testing, server-side CAPI tracking, and retargeting funnels scaled for high ROAS.
             </p>
             <ul class="service-features-list">
               <li><i class="fa-solid fa-check"></i> Server-side CAPI integration</li>
               <li><i class="fa-solid fa-check"></i> Rapid creative testing (RCT)</li>
-              <li><i class="fa-solid fa-check"></i> Dynamic catalog &amp; retargeting</li>
+              <li><i class="fa-solid fa-check"></i> Dynamic catalog retargeting</li>
             </ul>
             <a href="#contact" class="service-card-link" data-open-modal data-plan="Meta Ads Management">
               <span>Get Started</span> <i class="fa-solid fa-arrow-right"></i>
@@ -519,12 +535,12 @@
             </div>
             <h3 class="service-title">Video Production &amp; Reels</h3>
             <p class="service-desc">
-              Short-form vertical video is the undisputed currency of digital growth. We script, edit, animate, and produce viral-engineered Reels and Shorts that tell your story.
+              Short-form vertical reels with 3-second hooks, kinetic pacing, and viral visual storytelling.
             </p>
             <ul class="service-features-list">
               <li><i class="fa-solid fa-check"></i> 3-second scroll-stopping hooks</li>
-              <li><i class="fa-solid fa-check"></i> Kinetic typography &amp; sound design</li>
-              <li><i class="fa-solid fa-check"></i> Full 4K vertical editing workflow</li>
+              <li><i class="fa-solid fa-check"></i> Kinetic typography &amp; sound</li>
+              <li><i class="fa-solid fa-check"></i> 4K vertical editing workflow</li>
             </ul>
             <a href="#contact" class="service-card-link" data-open-modal data-plan="Video Production & Reels">
               <span>Get Started</span> <i class="fa-solid fa-arrow-right"></i>
@@ -538,11 +554,11 @@
             </div>
             <h3 class="service-title">LinkedIn B2B Advertising</h3>
             <p class="service-desc">
-              Laser-focused targeting directly into the feeds of CEOs, VP-level decision-makers, and corporate buyers. Generate high-ticket B2B pipeline and qualified enterprise leads.
+              Direct targeting into the feeds of CEOs, VP-level buyers, and enterprise corporate decision-makers.
             </p>
             <ul class="service-features-list">
               <li><i class="fa-solid fa-check"></i> Job title &amp; company size filters</li>
-              <li><i class="fa-solid fa-check"></i> Lead gen in-feed forms</li>
+              <li><i class="fa-solid fa-check"></i> In-feed lead gen forms</li>
               <li><i class="fa-solid fa-check"></i> Account-based marketing (ABM)</li>
             </ul>
             <a href="#contact" class="service-card-link" data-open-modal data-plan="LinkedIn B2B Advertising">
@@ -557,12 +573,12 @@
             </div>
             <h3 class="service-title">Search Engine Optimization</h3>
             <p class="service-desc">
-              On-page, off-page, and technical SEO architecture that dominates search engine results pages. Earn compounding organic traffic, top rankings, and long-term brand equity.
+              Technical crawl optimization and high-authority content clusters that compound organic rankings.
             </p>
             <ul class="service-features-list">
-              <li><i class="fa-solid fa-check"></i> Technical crawl &amp; Core Web Vitals</li>
+              <li><i class="fa-solid fa-check"></i> Core Web Vitals audit</li>
               <li><i class="fa-solid fa-check"></i> High-authority backlink outreach</li>
-              <li><i class="fa-solid fa-check"></i> Semantic keyword content clusters</li>
+              <li><i class="fa-solid fa-check"></i> Keyword content clusters</li>
             </ul>
             <a href="#contact" class="service-card-link" data-open-modal data-plan="Search Engine Optimization">
               <span>Get Started</span> <i class="fa-solid fa-arrow-right"></i>
@@ -576,10 +592,10 @@
             </div>
             <h3 class="service-title">Email &amp; WhatsApp Marketing</h3>
             <p class="service-desc">
-              Monetize your audience without paying ad platforms twice. Automated behavioral drip sequences, broadcast campaigns, and high-open-rate WhatsApp marketing funnels.
+              Automated drip sequences and 90%+ open-rate WhatsApp broadcasts that monetize your list.
             </p>
             <ul class="service-features-list">
-              <li><i class="fa-solid fa-check"></i> Abandoned cart &amp; welcome drips</li>
+              <li><i class="fa-solid fa-check"></i> Cart recovery &amp; welcome drips</li>
               <li><i class="fa-solid fa-check"></i> 90%+ Open rate WhatsApp broadcasts</li>
               <li><i class="fa-solid fa-check"></i> RFM customer segment tagging</li>
             </ul>
@@ -595,12 +611,12 @@
             </div>
             <h3 class="service-title">Influencer Marketing</h3>
             <p class="service-desc">
-              Partner with hand-vetted niche creators and influencers who hold genuine trust with your target demographic. Authentic brand endorsements with measurable tracking.
+              Hand-vetted creator partnerships and whitelisted ad amplification with measurable sales tracking.
             </p>
             <ul class="service-features-list">
               <li><i class="fa-solid fa-check"></i> Authentic creator matchmaking</li>
               <li><i class="fa-solid fa-check"></i> Whitelisted ad amplification</li>
-              <li><i class="fa-solid fa-check"></i> End-to-end contract &amp; ROI tracking</li>
+              <li><i class="fa-solid fa-check"></i> ROI tracking &amp; contracts</li>
             </ul>
             <a href="#contact" class="service-card-link" data-open-modal data-plan="Influencer Marketing">
               <span>Get Started</span> <i class="fa-solid fa-arrow-right"></i>
@@ -614,11 +630,11 @@
             </div>
             <h3 class="service-title">Conversion Rate Optimization</h3>
             <p class="service-desc">
-              Traffic without conversion is wasted ad spend. We engineer high-converting sales funnels, dynamic landing pages, and behavioral A/B tests that maximize your revenue per visitor.
+              High-converting landing pages and checkout optimization engineered to maximize revenue per click.
             </p>
             <ul class="service-features-list">
-              <li><i class="fa-solid fa-check"></i> High-converting landing page builds</li>
-              <li><i class="fa-solid fa-check"></i> Heatmaps &amp; user journey analytics</li>
+              <li><i class="fa-solid fa-check"></i> Landing page CRO builds</li>
+              <li><i class="fa-solid fa-check"></i> User journey analytics</li>
               <li><i class="fa-solid fa-check"></i> Checkout friction reduction</li>
             </ul>
             <a href="#contact" class="service-card-link" data-open-modal data-plan="Conversion Rate Optimization">
@@ -636,10 +652,10 @@
         
         <div class="showcase-header-row">
           <div>
-            <span class="sub-title" style="background: rgba(248, 158, 82, 0.18);"><i class="fa-solid fa-trophy"></i> Client Success Stories</span>
+            <span class="sub-title"><i class="fa-solid fa-trophy"></i> Client Success Stories</span>
             <h2 class="sec-title">Real Results For Fast-Growing Brands.</h2>
             <p class="sec-desc">
-              See how our full-funnel performance marketing and viral short-form studio generate record-breaking ROAS and qualified inbound leads.
+              Proven full-funnel scaling frameworks and viral short-form results for modern brands.
             </p>
           </div>
 
@@ -668,7 +684,7 @@
               </div>
               <h3 class="showcase-title">D2C Fashion &amp; Apparel Brand Scale</h3>
               <p class="showcase-desc">
-                Overhauled creative assets, implemented Meta Server-Side Conversion API, and structured cold-to-warm retargeting funnels that boosted monthly sales volume three-fold.
+                Creative overhaul, server-side CAPI tracking, and cold-to-warm retargeting funnels that tripled monthly sales volume.
               </p>
               <div class="showcase-footer">
                 <span class="showcase-client">Ananya Sharma, Founder</span>
@@ -691,7 +707,7 @@
               </div>
               <h3 class="showcase-title">EduTech Platform Viral Reels Machine</h3>
               <p class="showcase-desc">
-                Scripted and produced high-retention vertical reels breaking down complex concepts into 45-second stories, creating massive organic brand equity and record course enrollments.
+                High-retention vertical reels and educational short-form storytelling driving massive organic inbound enrollments.
               </p>
               <div class="showcase-footer">
                 <span class="showcase-client">Rohit Sen, Co-Founder</span>
@@ -714,7 +730,7 @@
               </div>
               <h3 class="showcase-title">B2B SaaS LinkedIn &amp; Google P-Max</h3>
               <p class="showcase-desc">
-                Targeted VP of Engineering and Product Directors with problem-centric lead magnets, booking high-ticket discovery calls on autopilot for the sales development team.
+                Problem-centric lead magnets targeting VP decision-makers, booking high-ticket discovery calls on autopilot.
               </p>
               <div class="showcase-footer">
                 <span class="showcase-client">Pooja Mukherjee, Marketing Dir.</span>
@@ -737,7 +753,7 @@
           <span class="sub-title"><i class="fa-solid fa-timeline"></i> Systematic Framework</span>
           <h2 class="sec-title">Strategy First. Growth Next.</h2>
           <p class="sec-desc">
-            Our systematic 4-phase framework takes the guesswork out of customer acquisition and replaces it with predictable, compounding ROI.
+            A predictable 4-phase framework replacing guesswork with compounding ROI.
           </p>
         </div>
 
@@ -747,7 +763,7 @@
             <div class="process-step-num">01</div>
             <h3 class="process-card-title">Discover &amp; Audit</h3>
             <p class="process-card-desc">
-              We analyze your brand DNA, target buyer persona, historical campaign metrics, and competitors to identify immediate revenue levers.
+              Deep audit of brand DNA, audience data, and quick-win revenue levers.
             </p>
           </div>
 
@@ -755,7 +771,7 @@
             <div class="process-step-num">02</div>
             <h3 class="process-card-title">Strategize &amp; Architect</h3>
             <p class="process-card-desc">
-              We engineer your full-funnel architecture, media spend allocation, creative moodboards, and multi-channel attribution framework.
+              Full-funnel media planning, budget allocation, and attribution setup.
             </p>
           </div>
 
@@ -763,7 +779,7 @@
             <div class="process-step-num">03</div>
             <h3 class="process-card-title">Create &amp; Launch</h3>
             <p class="process-card-desc">
-              Our studio produces scroll-stopping creatives, high-converting ad copy, and viral vertical reels before launching campaigns.
+              Scroll-stopping ad creatives, viral reels, and high-converting copy.
             </p>
           </div>
 
@@ -771,7 +787,7 @@
             <div class="process-step-num">04</div>
             <h3 class="process-card-title">Measure &amp; Scale</h3>
             <p class="process-card-desc">
-              Rigorous weekly A/B testing, rapid budget reallocation to winning ad sets, and scaling profitable channels for compounded growth.
+              Weekly A/B testing and rapid budget reallocation to winners.
             </p>
           </div>
 
@@ -790,7 +806,7 @@
           <span class="sub-title"><i class="fa-solid fa-calculator"></i> Interactive Growth Engine</span>
           <h2 class="sec-title">Simulate Your Brand's <span style="background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Revenue Potential</span></h2>
           <p class="sec-desc">
-            Adjust your planned monthly media spend and industry model to project estimated return on ad spend (ROAS), monthly revenue scale, and new customer volume.
+            Project estimated ROAS, revenue scale, and new customer volume based on monthly spend and industry benchmarks.
           </p>
         </div>
 
@@ -874,12 +890,11 @@
               </div>
 
               <div class="simulator-cta-wrap">
-                <a href="https://wa.me/917478368773?text=Hi%20Nexora%20Digital,%20I%20ran%20your%20Growth%20Simulator%20with%20a%20%E2%82%B91,50,000%20monthly%20budget%20and%20projected%20%E2%82%B97,20,000%20revenue.%20I'd%20like%20to%20request%20a%20custom%20proposal!" 
-                   target="_blank" 
-                   class="btn btn-primary simulator-whatsapp-btn" 
+                <a href="#contact" 
+                   class="btn btn-primary" 
                    id="simulatorCtaBtn">
                   <span>Lock In This Growth Strategy</span>
-                  <i class="fa-brands fa-whatsapp"></i>
+                  <i class="fa-solid fa-arrow-right"></i>
                 </a>
                 <span class="simulator-disclaimer">Zero obligation • Includes free 45-min strategy &amp; funnel audit</span>
               </div>
@@ -899,7 +914,7 @@
           <span class="sub-title"><i class="fa-solid fa-tags"></i> Tailored Growth Packages</span>
           <h2 class="sec-title">Flexible Plans. Real Measurable Results.</h2>
           <p class="sec-desc">
-            No cookie-cutter pricing or rigid contracts. Choose the growth tier that matches your current stage, and we will build a custom scope aligned with your unit economics.
+            No rigid contracts. Choose a growth tier aligned with your unit economics.
           </p>
         </div>
 
@@ -920,7 +935,7 @@
           <div class="price-card">
             <div class="price-card-header">
               <h3 class="plan-name">Starter</h3>
-              <p class="plan-desc">For emerging brands and creators building a strong social media foundation.</p>
+              <p class="plan-desc">For emerging brands building an active social foundation.</p>
               <div class="price-box price-unlock-trigger" data-open-modal data-plan="Starter Plan" title="Click to unlock custom quotation">
                 <div class="blurred-price-wrapper">
                   <div class="blurred-text">
@@ -956,7 +971,7 @@
             
             <div class="price-card-header">
               <h3 class="plan-name">Growth</h3>
-              <p class="plan-desc">For businesses ready to aggressively generate qualified leads and scalable sales.</p>
+              <p class="plan-desc">For brands scaling paid acquisition and predictable pipeline.</p>
               <div class="price-box price-unlock-trigger" data-open-modal data-plan="Growth Plan" title="Click to unlock custom quotation">
                 <div class="blurred-price-wrapper">
                   <div class="blurred-text">
@@ -990,7 +1005,7 @@
           <div class="price-card">
             <div class="price-card-header">
               <h3 class="plan-name">Premium</h3>
-              <p class="plan-desc">Full-scale digital takeover with dedicated senior account leadership.</p>
+              <p class="plan-desc">Full omnichannel scale with dedicated senior account leadership.</p>
               <div class="price-box price-unlock-trigger" data-open-modal data-plan="Premium Plan" title="Click to unlock custom quotation">
                 <div class="blurred-price-wrapper">
                   <div class="blurred-text">
@@ -1032,7 +1047,7 @@
           <span class="sub-title"><i class="fa-solid fa-heart"></i> Client Testimonials</span>
           <h2 class="sec-title">Loved by Founders, CEOs &amp; Fast-Growing Brands.</h2>
           <p class="sec-desc">
-            Here's what business leaders say about scaling customer acquisition with Nexora Digital.
+            What founders and marketing leaders say about scaling with Nexora Digital.
           </p>
         </div>
 
@@ -1041,7 +1056,7 @@
           <div class="testimonial-card">
             <div class="quote-icon-decor">“</div>
             <p class="testimonial-text">
-              "Before Nexora, we were burning ad budget on Facebook with barely 1.2x ROAS. Within 60 days of their creative overhaul and CAPI setup, we broke 4.5x ROAS and scaled our monthly volume three-fold."
+              "Before Nexora, we were burning budget at 1.2x ROAS. Within 60 days of their creative overhaul and CAPI setup, we broke 4.5x ROAS and tripled our monthly order volume."
             </p>
             <div class="testimonial-author-block">
               <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&q=80" alt="Ananya Sharma" class="author-avatar">
@@ -1058,7 +1073,7 @@
           <div class="testimonial-card">
             <div class="quote-icon-decor">“</div>
             <p class="testimonial-text">
-              "The reels and video production alone paid for the entire retainer. Their team understands hooks, pacing, and visual storytelling better than any other agency we've worked with in India."
+              "The reels and video production alone paid for the retainer. Their team understands hooks, pacing, and visual storytelling better than any agency we've tested."
             </p>
             <div class="testimonial-author-block">
               <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Rohit Sen" class="author-avatar">
@@ -1075,7 +1090,7 @@
           <div class="testimonial-card">
             <div class="quote-icon-decor">“</div>
             <p class="testimonial-text">
-              "Transparent reporting, no jargon, and genuine partnership. Their Google P-Max and LinkedIn B2B campaigns filled our sales reps' calendars with qualified decision-makers every single week."
+              "Transparent reporting and genuine partnership. Their Google P-Max and LinkedIn campaigns fill our sales calendars with qualified decision-makers every week."
             </p>
             <div class="testimonial-author-block">
               <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Pooja Mukherjee" class="author-avatar">
@@ -1101,7 +1116,7 @@
           <span class="sub-title"><i class="fa-solid fa-circle-question"></i> Help &amp; Clarification</span>
           <h2 class="sec-title">Questions, Answered.</h2>
           <p class="sec-desc">
-            Everything you need to know about partnering with Nexora Digital for sustainable brand growth.
+            Everything you need to know about partnering with Nexora Digital.
           </p>
         </div>
 
@@ -1115,7 +1130,7 @@
             </button>
             <div class="faq-answer-block">
               <div class="faq-answer-inner">
-                Starter suits early-stage brands and creators building an active social media presence and initial audience. Growth (our most popular tier) is designed for brands ready to actively generate sales leads and customer acquisition via paid Meta &amp; Google Ads. Premium is built for brands wanting full-scale omnichannel domination with 30+ posts, influencer collaboration, and a dedicated senior account manager.
+                <strong>Starter:</strong> Organic presence and content. <strong>Growth (Most Popular):</strong> Paid customer acquisition and lead gen via Meta &amp; Google Ads. <strong>Premium:</strong> Full omnichannel scale with dedicated account leadership.
               </div>
             </div>
           </div>
@@ -1128,7 +1143,7 @@
             </button>
             <div class="faq-answer-block">
               <div class="faq-answer-inner">
-                Absolutely. Tell us your goals, target audience, and current numbers during our discovery call, and we will tailor an exact custom package combining the right channel mix for your industry.
+                Yes. Share your goals during discovery, and we’ll build a custom channel mix tailored to your exact industry and unit economics.
               </div>
             </div>
           </div>
@@ -1141,7 +1156,7 @@
             </button>
             <div class="faq-answer-block">
               <div class="faq-answer-inner">
-                Yes! Full-stack website development (WordPress, Next.js, Webflow, Shopify), high-converting UI/UX landing pages, and logo/brand identity design are all available as add-ons to any growth package or standalone projects.
+                Yes. Full-stack websites (WordPress, Next.js, Shopify), high-converting landing pages, and brand identity design are available as add-ons or standalone sprints.
               </div>
             </div>
           </div>
@@ -1154,7 +1169,7 @@
             </button>
             <div class="faq-answer-block">
               <div class="faq-answer-inner">
-                Every plan includes regular performance reporting. We track bottom-line metrics: Cost Per Acquisition (CPA), Return on Ad Spend (ROAS), Qualified Leads, and Revenue Generated — not just superficial vanity likes.
+                Through real-time dashboards and weekly reviews tracking bottom-line numbers: ROAS, CPA, qualified leads, and net revenue — never vanity metrics.
               </div>
             </div>
           </div>
@@ -1167,7 +1182,7 @@
             </button>
             <div class="faq-answer-block">
               <div class="faq-answer-inner">
-                Onboarding typically takes 3 to 5 business days. During this window, we audit your accounts, install tracking pixels, map out your creative strategy, and prepare initial ad creatives for your approval.
+                Typically 3 to 5 business days to audit accounts, set up server-side tracking, build creative assets, and launch initial campaigns.
               </div>
             </div>
           </div>
@@ -1187,7 +1202,7 @@
             <span class="sub-title"><i class="fa-solid fa-handshake"></i> Let's Connect</span>
             <h2 class="sec-title">Ready to scale your brand? Let's talk growth.</h2>
             <p class="sec-desc" style="margin: 0 0 32px 0;">
-              Book a free 20-minute growth discovery call. We'll audit your current digital channels and show you exactly where the hidden revenue levers are.
+              Book a 20-minute discovery call to uncover immediate revenue levers across your digital channels.
             </p>
 
             <div class="metrics-column">
@@ -1198,7 +1213,7 @@
                 </div>
                 <div class="metric-big-num">12<span>x</span></div>
                 <h4 class="metric-card-title">Faster Funnel Setup</h4>
-                <p class="metric-card-desc">Rapid deployment framework from strategy audit to live ad spend in 5 days.</p>
+                <p class="metric-card-desc">Rapid deployment from initial audit to live campaigns in 5 days.</p>
               </div>
 
               <div class="metric-card-box">
@@ -1207,7 +1222,7 @@
                 </div>
                 <div class="metric-big-num">95<span>%</span></div>
                 <h4 class="metric-card-title">Client Retention</h4>
-                <p class="metric-card-desc">Long-term brand retention backed by transparent monthly performance reviews.</p>
+                <p class="metric-card-desc">Long-term brand retention backed by weekly transparent reviews.</p>
               </div>
 
               <div class="metric-card-box">
@@ -1232,7 +1247,7 @@
           <!-- Right Column: Free Consultation Form Card -->
           <div class="consultation-form-card">
             <h3 class="card-title">Request a Growth Proposal</h3>
-            <p class="card-desc">Fill in your details below and our lead strategist will connect within 4 hours.</p>
+            <p class="card-desc">Share your details and our growth strategist will connect within 4 hours.</p>
 
             <form id="consultationForm">
               
@@ -1264,10 +1279,27 @@
                 <textarea id="cNotes" class="form-textarea" placeholder="Tell us about your brand, current monthly ad spend, or key target metrics..."></textarea>
               </div>
 
-              <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px;">
-                <span>Submit &amp; Connect on WhatsApp</span>
-                <i class="fa-brands fa-whatsapp" style="font-size: 1.1rem;"></i>
+              <button type="submit" class="btn btn-primary" id="consultationSubmitBtn" style="width: 100%; padding: 16px;">
+                <span>Submit</span>
+                <i class="fa-solid fa-arrow-right" style="font-size: 1rem;"></i>
               </button>
+
+              <!-- Dynamic On-Page Success State (Hidden by Default) -->
+              <div id="consultationSuccessBox" style="display: none; margin-top: 18px; padding: 22px; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px; text-align: center;">
+                <div style="width: 48px; height: 48px; border-radius: 50%; background: rgba(16, 185, 129, 0.15); color: #10b981; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 12px;">
+                  <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <h4 style="color: #fff; font-size: 1.15rem; margin-bottom: 6px;">Proposal Request Received!</h4>
+                <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin-bottom: 14px;" id="consultationSuccessMsg">
+                  Thank you! Your brand details have been registered directly into our CRM. Our lead strategist will analyze your ad account and connect within 4 hours.
+                </p>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">
+                  Need instant priority response? 
+                  <a href="https://wa.me/917478368773" target="_blank" style="color: #25d366; font-weight: 700; text-decoration: underline; margin-left: 4px;">
+                    <i class="fa-brands fa-whatsapp"></i> Chat directly on WhatsApp
+                  </a>
+                </div>
+              </div>
 
             </form>
           </div>
@@ -1286,7 +1318,7 @@
         <div class="newsletter-box">
           <h2 class="sec-title">Looking for the Best Digital Agency &amp; Performance Partner?</h2>
           <p class="sec-desc">
-            Join 5,000+ founders receiving our weekly breakdown on high-converting ad creative, attribution hacks, and ROAS scaling strategies.
+            Weekly growth breakdowns on high-converting creative, attribution hacks, and ROAS scaling.
           </p>
 
           <form id="newsletterForm" class="newsletter-input-group">
@@ -1320,7 +1352,7 @@
             </div>
           </div>
           <p class="footer-brand-desc">
-            Full-service digital growth agency engineering high-converting customer acquisition funnels, viral short-form creative, and omnichannel paid media.
+            Data-driven performance marketing, high-converting creative studio, and omnichannel growth.
           </p>
           <div class="footer-social-links">
             <a href="https://instagram.com" target="_blank" class="footer-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -1452,10 +1484,16 @@
           <input type="tel" id="mPhone" class="form-input" placeholder="+91 XXXXX XXXXX" required>
         </div>
 
-        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; margin-top: 10px;">
-          <span>Submit Request on WhatsApp</span>
-          <i class="fa-brands fa-whatsapp"></i>
+        <button type="submit" class="btn btn-primary" id="modalSubmitBtn" style="width: 100%; padding: 15px; margin-top: 10px;">
+          <span>Submit</span>
+          <i class="fa-solid fa-arrow-right"></i>
         </button>
+
+        <div id="modalSuccessBox" style="display: none; margin-top: 14px; padding: 16px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; text-align: center;">
+          <i class="fa-solid fa-circle-check" style="color: #10b981; font-size: 1.3rem; margin-bottom: 6px; display: block;"></i>
+          <span style="color: #fff; font-weight: 600; font-size: 0.9rem;">Proposal Request Saved!</span>
+          <p style="color: var(--text-muted); font-size: 0.78rem; margin-top: 4px;">Our strategist will connect with your scope within 4 hours.</p>
+        </div>
       </form>
     </div>
   </div>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login – Nexora Digital Growth Hub</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Modern Minimalist Stylesheet -->
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="login-body">
+
+  <div class="ambient-glow"></div>
+
+  <div class="login-card-container">
+    <div class="login-card">
+      
+      <!-- Brand Logo Header -->
+      <div class="login-brand">
+        <img src="../assets/img/logo-clean.png" alt="Nexora Digital Logo" class="login-logo-img">
+        <h1 class="login-title">NEXORA <span>PORTAL</span></h1>
+        <p class="login-subtitle">Agency Growth Management &amp; CRM</p>
+      </div>
+
+      <!-- Error Alert -->
+      <div class="alert-box alert-error" id="loginAlert" style="display: none;">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span id="alertMsg">Invalid credentials. Please try again.</span>
+      </div>
+
+      <!-- Login Form -->
+      <form id="adminLoginForm">
+        <div class="form-group">
+          <label for="username" class="form-label">Username</label>
+          <div class="input-with-icon">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="username" class="form-input" placeholder="admin" required autocomplete="username">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-with-icon">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="password" class="form-input" placeholder="••••••••" required autocomplete="current-password">
+            <button type="button" class="btn-toggle-pwd" id="togglePwdBtn" aria-label="Toggle Password Visibility">
+              <i class="fa-solid fa-eye" id="pwdEyeIcon"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="login-options">
+          <label class="remember-label">
+            <input type="checkbox" id="rememberMe" checked>
+            <span>Stay signed in for 7 days</span>
+          </label>
+          <a href="../index.html" class="nav-item" style="padding: 0; color: var(--cyan); font-size: 0.8rem;">
+            Public Site &rarr;
+          </a>
+        </div>
+
+        <button type="submit" class="btn btn-login-submit" id="loginSubmitBtn">
+          <span>Authenticate &amp; Open Portal</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <!-- 1-Click Autofill Button for Frictionless Experience -->
+        <button type="button" class="btn-autofill-demo" id="btnAutofill">
+          <i class="fa-solid fa-bolt" style="color: var(--cyan);"></i>
+          <span>Autofill Demo Credentials (admin / nexora2026!)</span>
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+  <script>
+    // Quick session check
+    const token = localStorage.getItem('nexora_admin_token');
+    if (token) {
+      fetch('/api/auth/me', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      }).then(res => {
+        if (res.ok) window.location.href = 'index.html';
+      }).catch(() => {});
+    }
+
+    // Autofill demo button
+    const btnAutofill = document.getElementById('btnAutofill');
+    if (btnAutofill) {
+      btnAutofill.addEventListener('click', () => {
+        document.getElementById('username').value = 'admin';
+        document.getElementById('password').value = 'nexora2026!';
+      });
+    }
+
+    // Toggle Password
+    const togglePwdBtn = document.getElementById('togglePwdBtn');
+    const pwdInput = document.getElementById('password');
+    const pwdEyeIcon = document.getElementById('pwdEyeIcon');
+    if (togglePwdBtn && pwdInput) {
+      togglePwdBtn.addEventListener('click', () => {
+        const isPass = pwdInput.type === 'password';
+        pwdInput.type = isPass ? 'text' : 'password';
+        pwdEyeIcon.className = isPass ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+      });
+    }
+
+    // Form Submission
+    const loginForm = document.getElementById('adminLoginForm');
+    const loginAlert = document.getElementById('loginAlert');
+    const alertMsg = document.getElementById('alertMsg');
+    const submitBtn = document.getElementById('loginSubmitBtn');
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      loginAlert.style.display = 'none';
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Authenticating...';
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.token) {
+          localStorage.setItem('nexora_admin_token', data.token);
+          localStorage.setItem('nexora_admin_user', data.username);
+          document.cookie = `nexora_token=${data.token}; path=/; max-age=604800; SameSite=Lax`;
+          submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Success! Opening...';
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 300);
+        } else {
+          alertMsg.textContent = data.message || 'Invalid username or password.';
+          loginAlert.style.display = 'flex';
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<span>Authenticate &amp; Open Portal</span> <i class="fa-solid fa-arrow-right"></i>';
+        }
+      } catch (err) {
+        alertMsg.textContent = 'Server connection failed. Ensure backend server is running.';
+        loginAlert.style.display = 'flex';
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>Authenticate &amp; Open Portal</span> <i class="fa-solid fa-arrow-right"></i>';
+      }
+    });
+  </script>
+</body>
+</html>
